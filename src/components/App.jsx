@@ -13,7 +13,8 @@ export const  App = () => {
   const [status, setStatus] = useState('idle');
   const [openButtonLoadMore, setOpenButtonLoadMore] = useState(false);
 
-  useEffect(() => {
+  useEffect(() => { 
+setStatus('pending');
     async function getImage() {
       try {
         const searchInfo = await fetchImages(query, page)
@@ -39,7 +40,7 @@ export const  App = () => {
       return
     }
 
-    setStatus('pending')
+    
     getImage()
   }, [query, page])
 
