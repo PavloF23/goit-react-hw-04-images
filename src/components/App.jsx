@@ -18,8 +18,8 @@ setStatus('pending');
     async function getImage() {
       try {
         const searchInfo = await fetchImages(query, page)
-          if (searchInfo.data.hits.length !== 0) {
-            if (searchInfo.data.totalHits - 12 * page > 0) {
+          if (searchInfo.hits.length !== 0) {
+            if (searchInfo.totalHits - 12 * page > 0) {
               setOpenButtonLoadMore(true)
             } else {
               setOpenButtonLoadMore(false)
