@@ -1,38 +1,31 @@
 import PropTypes from 'prop-types';
-import { Component } from "react";
+import { useState } from "react";
 import { IoSearchOutline } from 'react-icons/io5';
 import { Header, SearchForm, Button, Label, Input, } from './Searchbar.styled';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export class Searchbar extends Component {
-  state = {
-    findImg: '',
-  };
-  static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-  };
-
-handleNameChange = evt => {
-  this.setState({findImg: evt.currentTarget.value.toLowerCase() });
+export function Searchbar({ onSubmit }) {
+  const [findImg, setFindImg] = useState('');
+   
+const handleNameChange = evt => {
+  setFindImg(evt.currentTarget.value.toLowerCase());
 };
 
-handleSubmit = evt => {
+const handleSubmit = evt => {
   evt.preventDefault();
 
-  if (this.state.findImg.trim() === '') {
+  if (findImg.trim() === '') {
     return toast.error('Please enter something.');
   }
-
-  this.props.onSubmit(this.state.findImg);
-  this.setState({ findImg: '' });
+  onSubmit(findImg);
+  setFindImg('');
 };
 
-render() {
     return (
       <Header>
         <ToastContainer position="top-center" autoClose={3000} theme="colored"/>
-        <SearchForm onSubmit={this.handleSubmit}>
+        <SearchForm onSubmit={handleSubmit}>
           <Button type="submit">
             <IoSearchOutline size={24} />
             <Label>Search</Label>
@@ -42,10 +35,14 @@ render() {
             autocomplete="off"
             autoFocus
             placeholder="Search images and photos"
-            value={this.state.findImg}
-            onChange={this.handleNameChange}
+            value={findImg}
+            onChange={handleNameChange}
           />
         </SearchForm>
       </Header>
     );
-  }};
+  };
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

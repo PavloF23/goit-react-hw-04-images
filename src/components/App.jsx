@@ -1,66 +1,64 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import { Searchbar } from './Searchbar/Searchbar';
 import { AppStyle } from './App.styled';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { LoadMore } from "./LoadMore/LoadMore";
 import { Loader } from './Loader/Loader';
+import { fetchImages }from './servisApi';
 
-export class App extends Component {
-  state = {
-    query: '',
-    images: [],
-    page: 1,
-    status: "idle",
-    openButtonLoadMore: false,
-  }
+export const  App = () => {
+  const [query, setQuery] = useState('');
+  const [images, setImades] = useState([]);
+  const [page, setPage] = useState(1);
+  const [status, setStatus] = useState('idle');
+  const [openButtonLoadMore, setOpenButtonLoadMore] = useState(false);
 
-  handleFormSubmit = query => {
-    this.setState({ page:1, query, images: [] });
-  };
-
-  componentDidUpdate(prevProps, prevState) {
-    const { page, query } = this.state
-    const BASE_URL = 'https://pixabay.com/api/';
-    const API_KEY = '32850209-97f2951747f8bc30e5bbd4a42';
-      
-    if (prevState.query !== query || prevState.page !== page) {
-      this.setState({ status: 'pending'})
-      fetch(`${BASE_URL}?q=${query}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`)
-        .then(response => response.json())
-        .then(searchInfo => {
-          if (searchInfo.hits.length !== 0) {
-            if (searchInfo.totalHits - 12 * page > 0) {
-              this.setState({ openButtonLoadMore: true})
+  useEffect(() => {
+    async function getImage() {
+      try {
+        const searchInfo = await fetchImages(query, page)
+          if (searchInfo.data.hits.length !== 0) {
+            if (searchInfo.data.totalHits - 12 * page > 0) {
+              setOpenButtonLoadMore(true)
             } else {
-              this.setState({ openButtonLoadMore: false })
+              setOpenButtonLoadMore(false)
             }
-            return  this.setState(prevState => ({ images: [...prevState.images, ...searchInfo.hits], status: 'resolved'}))
+          setImades(prevImages => [...prevImages, ...searchInfo.data.hits])
+          setStatus('resolved')
+          return 
           }
-          this.setState({ status: 'rejected' })
-          return Promise.reject(
-            new Error("Sory, no result!")
-          )
-        })
-        .catch((error) => {
-          this.setState({error, status: 'rejected' })
-        })
+        setStatus('rejected')
+        throw new Error("Sory, no result!");
+      } catch (error) {
+        // setError(error)
+        setStatus('rejected')
+      }
     }
-  } 
 
-  loadMore = () => {
-    this.setState(prevState => ({
-      page: prevState.page + 1,
-      status: 'pending',
-    }));
+    if (query==='') {
+      return
+    }
+
+    setStatus('pending')
+    getImage()
+  }, [query, page])
+
+
+  const handleFormSubmit = query => {
+    setQuery(query);
+    setImades([]);
+    setPage(1);
   };
 
-  render() {
-    const { images, status, query, openButtonLoadMore } = this.state;
+  const loadMore = () => {
+    setPage(prevPage => prevPage + 1);
+    setStatus('pending');
+  };
 
     if (status === "idle") {
       return (
         <AppStyle>
-          <Searchbar onSubmit={this.handleFormSubmit} />
+          <Searchbar onSubmit={handleFormSubmit} />
           <p>Enter the name of the picture</p>
         </AppStyle>
       );
@@ -69,7 +67,7 @@ export class App extends Component {
     if (status === "pending") {
       return (
         <AppStyle>
-          <Searchbar onSubmit={this.handleFormSubmit} />
+          <Searchbar onSubmit={handleFormSubmit} />
           <ImageGallery items={images} />
           <Loader />
         </AppStyle>       
@@ -79,9 +77,9 @@ export class App extends Component {
     if (status === "resolved") {
       return (
         <AppStyle>
-          <Searchbar onSubmit={this.handleFormSubmit} />
+          <Searchbar onSubmit={handleFormSubmit} />
           <ImageGallery items={images} />
-          {openButtonLoadMore && <LoadMore onClick={this.loadMore} />}
+          {openButtonLoadMore && <LoadMore onClick={loadMore} />}
         </AppStyle>
       );
     }
@@ -89,10 +87,10 @@ export class App extends Component {
     if (status === "rejected") {
       return (
         <AppStyle>
-          <Searchbar onSubmit={this.handleFormSubmit} />
+          <Searchbar onSubmit={handleFormSubmit} />
           <h1>{`No results containing ${query} were found.`}</h1>
         </AppStyle>
       );
     }
-  }
+  
 };
