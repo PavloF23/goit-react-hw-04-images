@@ -14,9 +14,10 @@ export const  App = () => {
   const [openButtonLoadMore, setOpenButtonLoadMore] = useState(false);
 
   useEffect(() => { 
-setStatus('pending');
+
     async function getImage() {
       try {
+setStatus('pending');
         const searchInfo = await fetchImages(query, page)
           if (searchInfo.hits.length !== 0) {
             if (searchInfo.totalHits - 12 * page > 0) {
