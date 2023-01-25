@@ -8,7 +8,7 @@ import { fetchImages }from './servisApi';
 
 export const  App = () => {
   const [query, setQuery] = useState('');
-  const [images, setImades] = useState([]);
+  const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [status, setStatus] = useState('idle');
   const [openButtonLoadMore, setOpenButtonLoadMore] = useState(false);
@@ -23,7 +23,7 @@ export const  App = () => {
             } else {
               setOpenButtonLoadMore(false)
             }
-          setImades(prevImages => [...prevImages, ...searchInfo.data.hits])
+          setImages(prevImages => [...prevImages, ...searchInfo.data.hits])
           setStatus('resolved')
           return 
           }
