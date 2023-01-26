@@ -28,7 +28,7 @@ useEffect(() => {
   };  
   
     return createPortal(
-      <Backdrop onClick={handleBackdropClick}>
+      <Backdrop onClick={cleanEventListener}>
         <ModalBox>
           {children}
         </ModalBox>
