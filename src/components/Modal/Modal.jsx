@@ -19,15 +19,13 @@ useEffect(() => {
   return () => {
     window.removeEventListener("keydown", cleanEventListener);
   }
-}, [onClose]);
-  
+}, [onClose]);  
 
- const handleBackdropClick = evt => {
-    if (evt.currentTarget === evt.target) {
-      onClose();
-    }
-  };
-  
+//  const handleBackdropClick = evt => {
+//     if (evt.currentTarget === evt.target) {
+//       onClose();
+//     }
+//   };  
   
     return createPortal(
       <Backdrop onClick={handleBackdropClick}>
