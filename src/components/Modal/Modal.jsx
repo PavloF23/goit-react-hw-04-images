@@ -9,12 +9,6 @@ export function Modal({children, onClose}) {
  
 useEffect(() => {
   
-  const handleBackdropClick = evt => {
-    if (evt.currentTarget === evt.target) {
-     onClose();
-    } 
-  };
-
    const cleanEventListener = evt => {
     if (evt.code === "Escape") {
       onClose();
@@ -27,11 +21,11 @@ useEffect(() => {
   }
 }, [onClose]);  
 
-//  const handleBackdropClick = evt => {
-//     if (evt.currentTarget === evt.target) {
-//      onClose();
-//     } 
-//   };  
+ const handleBackdropClick = evt => {
+    if (evt.currentTarget !== evt.target) {
+     onClose();
+    } 
+  };  
   
     return createPortal(
       <Backdrop onClick={handleBackdropClick}>
