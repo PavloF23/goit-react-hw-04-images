@@ -9,12 +9,6 @@ export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
   const openModal = () => {
     setShowModal(!showModal);
    };
-  // if (searchInfo.totalHits - 12 * page > 0) {
-  //            setOpenButtonLoadMore(true)
-  //          } else {
-  //            setOpenButtonLoadMore(false)
-  //          }
-//  const { webformatURL, tags, largeImageURL } = this.props;
   
   return (
     <GalleryItem onClick={openModal}  >
