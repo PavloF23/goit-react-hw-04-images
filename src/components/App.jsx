@@ -25,7 +25,7 @@ setStatus('pending');
             } else {
               setOpenButtonLoadMore(false)
             }
-          setImages(prevImages => [...prevImages, ...searchInfo.data.hits])
+          setImages(prevImages => [...prevImages, ...searchInfo.hits])
           setStatus('resolved')
           return 
           }
@@ -48,7 +48,7 @@ setStatus('pending');
 
   const handleFormSubmit = query => {
     setQuery(query);
-    setImades([]);
+    setImages([]);
     setPage(1);
   };
 
