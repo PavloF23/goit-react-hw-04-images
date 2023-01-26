@@ -11,10 +11,9 @@ export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
    };
   
   return (
-    <GalleryItem>
-      <Img src={webformatURL} alt={tags} onClick={openModal} />
-      {showModal && <Modal onClose={openModal} ><img src={largeImageURL} alt={tags} /></Modal>
-     }
+    <GalleryItem onClick={openModal} >
+      <Img src={webformatURL} alt={tags} />
+      { showModal && <Modal onClose={openModal} ><img src={largeImageURL} alt={tags} /></Modal> }
     </GalleryItem>
   );
 }
