@@ -22,7 +22,7 @@ useEffect(() => {
 }, [onClose]);  
 
  const handleBackdropClick = evt => {
-    if (evt.currentTarget !== evt.target) {
+    if (evt.currentTarget === evt.target) {
      onClose();
     } 
   };  
