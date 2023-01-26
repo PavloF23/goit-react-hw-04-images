@@ -32,7 +32,6 @@ setStatus('pending');
         setStatus('rejected')
         throw new Error("Sory, no result!");
       } catch (error) {
-        // setError(error)
         setStatus('rejected')
       }
     }
@@ -40,11 +39,8 @@ setStatus('pending');
     if (query==='') {
       return
     }
-
-    
-    getImage()
+   getImage()
   }, [query, page])
-
 
   const handleFormSubmit = query => {
     setQuery(query);
@@ -70,7 +66,7 @@ setStatus('pending');
       return (
         <AppStyle>
           <Searchbar onSubmit={handleFormSubmit} />
-          <ImageGallery items={images} />
+//           <ImageGallery items={images} />
           <Loader />
         </AppStyle>       
       );
@@ -94,5 +90,4 @@ setStatus('pending');
         </AppStyle>
       );
     }
-  
 };
