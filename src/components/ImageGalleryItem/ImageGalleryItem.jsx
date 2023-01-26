@@ -10,7 +10,7 @@ export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
     setShowModal(({ showModal }) => ({showModal: !showModal}));
    };
   
-  const { webformatURL, tags, largeImageURL } = this.props;
+//  const { webformatURL, tags, largeImageURL } = this.props;
   
   return (
     <GalleryItem onClick={openModal}  >
