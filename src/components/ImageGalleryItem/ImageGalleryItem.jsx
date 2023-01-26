@@ -7,7 +7,7 @@ export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
   const [showModal, setShowModal] = useState(false)
  
   const openModal = () => {
-    setShowModal(({ showModal }) => ({showModal: !showModal}));
+    setShowModal(({ showModal }) => ({ !showModal}));
    };
   
 //  const { webformatURL, tags, largeImageURL } = this.props;
