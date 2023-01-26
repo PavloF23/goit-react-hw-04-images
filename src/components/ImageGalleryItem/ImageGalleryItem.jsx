@@ -7,7 +7,7 @@ export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
   const [showModal, setShowModal] = useState(false)
  
   const openModal = () => {
-    setShowModal(prevShowModal  => (showModal: !showModal);
+    setShowModal(!showModal);
    };
   // if (searchInfo.totalHits - 12 * page > 0) {
   //            setOpenButtonLoadMore(true)
