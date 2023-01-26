@@ -5,28 +5,26 @@ import { createPortal } from "react-dom";
 
 const modalRoot = document.querySelector('#modal-root');
 
-export function Modal({children, onClose}) {
+export function Modal({ children, onClose }) {
  
 useEffect(() => {
+   window.addEventListener("keydown", cleanEventListener);
+  
+  return () => {
+    window.removeEventListener("keydown", cleanEventListener);
+  }
+}, [onClose]);  
   
    const cleanEventListener = evt => {
     if (evt.code === "Escape") {
       onClose();
     }
   };
-  
-    window.addEventListener("keydown", cleanEventListener);
-  return () => {
-    window.removeEventListener("keydown", cleanEventListener);
-  }
-}, [onClose]);  
 
  const handleBackdropClick = evt => {
-   console.log(evt.currentTarget)
-   console.log(evt.target)
-//     if (evt.currentTarget === evt.target) {
-//      onClose();
-//     } 
+   if (evt.currentTarget === evt.target) {
+     onClose();
+     } 
   };  
   
     return createPortal(
@@ -40,5 +38,6 @@ useEffect(() => {
 }
 
 Modal.propTypes = {
+  children: PropTypes.object.isRequired,
   onClose: PropTypes.func.isRequired,
 };
