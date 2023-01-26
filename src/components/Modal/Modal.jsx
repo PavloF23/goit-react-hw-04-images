@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 
 const modalRoot = document.querySelector('#modal-root');
 
-export function Modal({largeImageURL, onClose}) {
+export function Modal({children, onClose}) {
  
 useEffect(() => {
 
@@ -22,7 +22,7 @@ useEffect(() => {
 }, [onClose]);  
 
  const handleBackdropClick = evt => {
-    if (evt.currentTarget === evt.target) {
+    if (evt.currentTarget !== evt.target) {
       onClose();
     }
   };  
@@ -30,7 +30,7 @@ useEffect(() => {
     return createPortal(
       <Backdrop onClick={handleBackdropClick}>
         <ModalBox>
-          {largeImageURL}
+          {children}
         </ModalBox>
       </Backdrop>,
       modalRoot
@@ -39,5 +39,4 @@ useEffect(() => {
 
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
-   largeImageURL: PropTypes.string.isRequired,
 };
