@@ -3,7 +3,7 @@ import { GalleryItem, Img } from './ImageGalleryItem.styled';
 import { Modal } from 'components/Modal/Modal';
 import { useState } from "react";
 
-export function ImageGalleryItem() {
+export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
   const [showModal, setShowModal] = useState(false)
  
   const openModal = () => {
