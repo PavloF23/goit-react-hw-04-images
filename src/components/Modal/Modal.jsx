@@ -39,4 +39,5 @@ useEffect(() => {
 
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
+   largeImageURL: PropTypes.string.isRequired,
 };
