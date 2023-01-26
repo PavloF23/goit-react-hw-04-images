@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 
 const modalRoot = document.querySelector('#modal-root');
 
-export function Modal({children, onClose()}) {
+export function Modal({children, onClose}) {
  
 useEffect(() => {
 
@@ -23,7 +23,7 @@ useEffect(() => {
 
  const handleBackdropClick = evt => {
     if (evt.currentTarget === evt.target) {
-      onClose();
+      return
     } 
   };  
   
