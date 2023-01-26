@@ -5,15 +5,25 @@ import { useState } from "react";
 
 export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
   const [showModal, setShowModal] = useState(false);
- 
+//  const [largeImage, setLargeImage] = useState('');
+  
   const openModal = () => {
-    setShowModal(!showModal);
-   };
+    setShowModal(!showModal);   
+  };
+
+  //  const openModal = largeImageURL => {
+  //   setLargeImage(largeImageURL);
+  // };
+
+  // const closeModal = () => {
+  //   setLargeImage('');
+  // };
   
   return (
-    <GalleryItem  >
+    <GalleryItem onClick={openModal} >
       <Img src={webformatURL} alt={tags} />
       { showModal && <Modal onClose={openModal} ><img src={largeImageURL} alt={tags} /></Modal> }
+      {/* { largeImage.length > 0 && <Modal onClose={closeModal} ><img src={largeImageURL} alt={tags} /></Modal> } */}
     </GalleryItem>
   );
 }
