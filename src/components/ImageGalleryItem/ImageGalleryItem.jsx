@@ -7,16 +7,13 @@ export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
   const [showModal, setShowModal] = useState(false)
  
   const openModal = () => {
-    setShowModal(true);
+    setShowModal(!showModal);
    };
-  const closeModal = () => {
-  setShowModal(false); 
-  }
   
   return (
     <GalleryItem onClick={openModal}  >
       <Img src={webformatURL} alt={tags} />
-      {showModal && <Modal onClose={closeModal} ><img src={largeImageURL} alt={tags} /></Modal>
+      {showModal && <Modal onClose={openModal} ><img src={largeImageURL} alt={tags} /></Modal>
      }
     </GalleryItem>
   );
