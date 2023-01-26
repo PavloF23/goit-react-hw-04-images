@@ -22,13 +22,15 @@ useEffect(() => {
 }, [onClose]);  
 
  const handleBackdropClick = evt => {
-    if (evt.currentTarget === evt.target) {
-     onClose();
-    } 
+   console.log(evt.currentTarget)
+   console.log(evt.target)
+//     if (evt.currentTarget === evt.target) {
+//      onClose();
+//     } 
   };  
   
     return createPortal(
-      <Backdrop onClick={cleanEventListener}>
+      <Backdrop onClick={handleBackdropClick}>
         <ModalBox>
           {children}
         </ModalBox>
