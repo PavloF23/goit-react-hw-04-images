@@ -11,7 +11,7 @@ export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
    };
   
   return (
-    <GalleryItem onClick={openModal} >
+    <GalleryItem  >
       <Img src={webformatURL} alt={tags} />
       { showModal && <Modal onClose={openModal} ><img src={largeImageURL} alt={tags} /></Modal> }
     </GalleryItem>
