@@ -22,7 +22,7 @@ export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
   return (
     <GalleryItem onClick={openModal} >
       <Img src={webformatURL} alt={tags} />
-      { showModal && <Modal onClose={openModal} ><img src={largeImageURL} alt={tags} /></Modal> }
+      { showModal && <Modal  ><img src={largeImageURL} alt={tags} /></Modal> }
       {/* { largeImage.length > 0 && <Modal onClose={closeModal} ><img src={largeImageURL} alt={tags} /></Modal> } */}
     </GalleryItem>
   );
