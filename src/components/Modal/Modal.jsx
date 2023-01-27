@@ -17,7 +17,7 @@ useEffect(() => {
   
    const cleanEventListener = evt => {
     if (evt.code === "Escape") {
-      onClose();
+      !onClose();
     }
   };
 
