@@ -30,7 +30,7 @@ useEffect(() => {
   
     return createPortal(
       <Backdrop onClick={handleBackdropClick}>
-        <ModalBox onClick={onModalClick}>
+        <ModalBox>
           {children}
         </ModalBox>
       </Backdrop>,
