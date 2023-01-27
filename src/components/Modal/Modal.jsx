@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 
 const modalRoot = document.querySelector('#modal-root');
 
-export function Modal({ children, onClose }) {
+export function Modal({ children }) {
  
 useEffect(() => {
    window.addEventListener("keydown", cleanEventListener);
@@ -39,5 +39,5 @@ useEffect(() => {
 
 Modal.propTypes = {
   children: PropTypes.object.isRequired,
-  onClose: PropTypes.func.isRequired,
+//   onClose: PropTypes.func.isRequired,
 };
