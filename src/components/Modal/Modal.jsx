@@ -19,7 +19,7 @@ useEffect(() => {
   return () => {
    window.removeEventListener("keydown", cleanEventListener);
   }
-});  
+}, [onClose]);  
 
  const handleBackdropClick = evt => {
    if (evt.currentTarget === evt.target) {
