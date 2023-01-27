@@ -17,13 +17,13 @@ useEffect(() => {
   
    const cleanEventListener = evt => {
     if (evt.code === "Escape") {
-      !onClose();
+      onClose();
     }
   };
 
  const handleBackdropClick = evt => {
    if (evt.currentTarget === evt.target) {
-     onClose();
+     !onClose();
      } 
   };  
   
