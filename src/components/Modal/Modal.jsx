@@ -9,16 +9,15 @@ export function Modal({ children, onClose }) {
  
 useEffect(() => {
   
-     const cleanEventListener = evt => {
+  const cleanEventListener = evt => {
     if (evt.code === "Escape") {
       onClose();
     }
   };
   
-   window.addEventListener("keydown", cleanEventListener);
-  
+   window.addEventListener("keydown", cleanEventListener);  
   return () => {
-    window.removeEventListener("keydown", cleanEventListener);
+   window.removeEventListener("keydown", cleanEventListener);
   }
 });  
 
