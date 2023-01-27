@@ -65,7 +65,8 @@ setStatus('pending');
     if (status === "pending") {
       return (
         <AppStyle>
-          <Searchbar onSubmit={handleFormSubmit} />
+          <Searchbar onSubmit={handleFormSubmit} /> 
+          <ImageGallery items={images} />
           <Loader />
         </AppStyle>       
       );
