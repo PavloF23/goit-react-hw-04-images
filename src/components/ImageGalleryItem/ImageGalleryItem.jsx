@@ -8,9 +8,12 @@ export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
 //  const [largeImage, setLargeImage] = useState('');
   
   const openModal = () => {
-    setShowModal(!showModal);   
+    setShowModal(true);   
   };
 
+  const closeModal = () => {
+    setShowModal(false);   
+  };
   //  const openModal = largeImageURL => {
   //   setLargeImage(largeImageURL);
   // };
@@ -22,7 +25,7 @@ export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
   return (
     <GalleryItem onClick={openModal} >
       <Img src={webformatURL} alt={tags} />
-      { showModal && <Modal  ><img src={largeImageURL} alt={tags} /></Modal> }
+      { showModal && <Modal onClose={closeModal} ><img src={largeImageURL} alt={tags} openMod={openModal} /></Modal> }
       {/* { largeImage.length > 0 && <Modal onClose={closeModal} ><img src={largeImageURL} alt={tags} /></Modal> } */}
     </GalleryItem>
   );
